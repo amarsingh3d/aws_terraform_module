@@ -1,4 +1,4 @@
 output "EIP" {
-    value = aws_eip.this.address
-  
+  value = aws_eip.this.address
+
 }

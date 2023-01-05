@@ -1,11 +1,11 @@
 variable "key_name" {
-    type = string
-    default = ""
-  
+  type    = string
+  default = ""
+
 }
 
 variable "pub_key" {
-    type = string
-    default = ""
-  
+  type    = string
+  default = ""
+
 }

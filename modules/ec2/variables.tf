@@ -14,9 +14,9 @@ variable "ami" {
 }
 
 variable "tags" {
-   description = "A mapping of tags to assign to the resource"
-  type = map(any)
-  default = {}
+  description = "A mapping of tags to assign to the resource"
+  type        = map(any)
+  default     = {}
 
 }
 
@@ -34,27 +34,27 @@ variable "subnet_id" {
 
 variable "volume_size" {
   description = "Volume size in GB"
-  type = number
-  
-  
+  type        = number
+
+
 }
 
 variable "volume_type" {
   description = "Details about volume"
-  type = string
-  
-  
+  type        = string
+
+
 }
 
 variable "key_name" {
-  type = string
+  type    = string
   default = ""
-  
+
 }
 
 variable "availability_zone" {
-  type = string
+  type    = string
   default = ""
-  
+
 }
 

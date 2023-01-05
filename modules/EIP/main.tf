@@ -3,7 +3,7 @@
 ################################################################################
 
 resource "aws_eip" "this" {
-  vpc = true
+  vpc      = true
   instance = var.instanceID
 
 

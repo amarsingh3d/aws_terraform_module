@@ -21,5 +21,5 @@ variable "type" {
 }
 variable "protocol" {
   default = "tcp"
-  
+
 }

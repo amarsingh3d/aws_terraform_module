@@ -1,5 +1,5 @@
 variable "instanceID" {
-    type = string
-    default = ""
-  
+  type    = string
+  default = ""
+
 }
