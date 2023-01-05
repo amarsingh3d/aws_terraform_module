@@ -1,4 +1,4 @@
-# SG rule vaiable of port for web Security Group
+# SG rule vaiable of port for web Security Group - Add/remove IP and port block here
 web_sg_port = [
   {
     port = "22"
@@ -21,7 +21,7 @@ web_sg_port = [
     des  = "https access from office IP"
   }
 ]
-# SG rule vaiable of port for ELB Security Group
+# SG rule vaiable of port for ELB Security Group - Add/remove IP and port block here
 elb_sg_port = [
   
   
@@ -36,3 +36,8 @@ elb_sg_port = [
     des  = "https access from office IP"
   }
 ]
+
+# subnet id for EC2 instance
+subnet_id = "paste_id_here"
+# Update instance count here
+instance_count = 2

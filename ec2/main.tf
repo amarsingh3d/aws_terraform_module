@@ -1,3 +1,8 @@
+provider "aws" {
+  region = "us-east-1"
+
+
+}
 
 data "aws_vpc" "this" {
   default = true
@@ -62,11 +67,11 @@ module "webec2" {
   source                 = "../modules/ec2"
   instance_type          = "t3.micro"
   ami                    = var.ami
-  count                  = 2
+  count                  = var.instance_count
   key_name               = module.key_pair.key_name
   volume_size            = var.volume_size
   volume_type            = var.volume_type
-  subnet_id              = "subnet-use1"
+  subnet_id              = var.subnet_id
   vpc_security_group_ids = [module.ec2_web_sg.SG_ID]
   tags = merge(
     var.tags,

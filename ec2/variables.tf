@@ -48,3 +48,8 @@ variable "elb_sg_port" {
   default = ""
   
 }
+
+variable "subnet_id" {
+  default = ""  
+}
+
