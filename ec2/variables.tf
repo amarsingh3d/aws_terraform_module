@@ -23,11 +23,7 @@ variable "instance_count" {
 
 
 variable "ami" {
-  type = map(any)
-  default = {
-    us-east-1 = "use1-ami"
-    us-west-2 = "usw2-ami"
-  }
+  default = "paste_ami_id_here"
 }
 
 variable "volume_size" {

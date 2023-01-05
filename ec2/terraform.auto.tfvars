@@ -1,3 +1,4 @@
+# SG rule vaiable of port for web Security Group
 web_sg_port = [
   {
     port = "22"
@@ -20,7 +21,7 @@ web_sg_port = [
     des  = "https access from office IP"
   }
 ]
-
+# SG rule vaiable of port for ELB Security Group
 elb_sg_port = [
   
   
