@@ -44,3 +44,11 @@ variable "volume_type" {
 
 }
 
+variable "web_sg_port" {
+  default = ""  
+}
+
+variable "elb_sg_port" {
+  default = ""
+  
+}

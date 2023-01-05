@@ -1,18 +1,6 @@
-################################################################################
-# Retrive use1 subnet id filtered by subnet name
-################################################################################
-data "aws_subnet" "this" {
-  filter {
-    name   = "tag:Name"
-    values = ["use1-public"]
-  }
-}
 
 data "aws_vpc" "this" {
-  filter {
-    name   = "tag:Name"
-    values = ["opdev"]
-  }
+  default = true
 
 }
 ################################################################################
@@ -30,12 +18,14 @@ module "key_pair" {
 # Module AWS ELB Security Group
 ################################################################################
 module "elb_web_sg" {
-  source      = "../modules/SG"
-  name        = "elb-web-sg"
-  description = "SG for web Loadbalancer"
-  vpc_id      = data.aws_vpc.this.id
-  ports       = [80, 443]
-  cidr_blocks = ["192.168.1.32/32", "0.0.0.0/0"]
+  source         = "../modules/SG_Groups"
+  sg_name        = "elb_sg"
+  sg_description = "sg for Web ELB"
+  aws_vpc        = data.aws_vpc.this.id
+  tags           = var.tags
+  types          = "ingress"
+  ports          = var.elb_sg_port
+  protocols      = "tcp"
 
 
 }
@@ -44,12 +34,15 @@ module "elb_web_sg" {
 # Module AWS EC2 Security Group
 ################################################################################
 module "ec2_web_sg" {
-  source          = "../modules/SG"
-  name            = "ec2-web-sg"
-  description     = "SG for Web Servers"
-  vpc_id          = data.aws_vpc.this.id
-  ports           = [22, 80, 443]
-  security_groups = module.elb_web_sg.sgid
+  source         = "../modules/SG_Groups"
+  sg_name        = "web_sg"
+  sg_description = "SG for Web servers"
+  aws_vpc        = data.aws_vpc.this.id
+  tags           = var.tags
+  types          = "ingress"
+  ports          = var.web_sg_port
+  protocols      = "tcp"
+
 
 
 }
@@ -73,8 +66,8 @@ module "webec2" {
   key_name               = module.key_pair.key_name
   volume_size            = var.volume_size
   volume_type            = var.volume_type
-  subnet_id              = data.aws_subnet.this.id
-  vpc_security_group_ids = [module.ec2_web_sg.sgid]
+  subnet_id              = "subnet-use1"
+  vpc_security_group_ids = [module.ec2_web_sg.SG_ID]
   tags = merge(
     var.tags,
     {
