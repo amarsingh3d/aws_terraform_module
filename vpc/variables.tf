@@ -1,4 +1,4 @@
-variable "vpc_name" {
+variable "prod_vpc_name" {
   default = ""
 }
 variable "region" {

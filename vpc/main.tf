@@ -8,7 +8,7 @@ provider "aws" {
 module "prod_vpc" {
   region                       = var.region
   source                       = "../modules/vpc"
-  vpc_name                     = var.vpc_name
+  vpc_name                     = var.prod_vpc_name
   cidr_block                   = var.cidr_block
   public_subnet_az1_cidr       = var.public_subnet_az1_cidr
   public_subnet_az2_cidr       = var.public_subnet_az2_cidr
