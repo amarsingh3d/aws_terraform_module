@@ -12,7 +12,7 @@ data "aws_vpc" "this" {
 # Module AWS_Key_Pair
 ################################################################################
 module "key_pair" {
-  source   = "../modules/aws_key_pair"
+  source   = "../../modules/aws_key_pair"
   key_name = "Project1_key"
   pub_key  = var.project1_key
 
@@ -23,7 +23,7 @@ module "key_pair" {
 # Module AWS ELB Security Group
 ################################################################################
 module "elb_web_sg" {
-  source         = "../modules/SG_Groups"
+  source         = "../../modules/SG_Groups"
   sg_name        = "elb_sg"
   sg_description = "sg for Web ELB"
   aws_vpc        = data.aws_vpc.this.id
@@ -39,7 +39,7 @@ module "elb_web_sg" {
 # Module AWS EC2 Security Group
 ################################################################################
 module "ec2_web_sg" {
-  source         = "../modules/SG_Groups"
+  source         = "../../modules/SG_Groups"
   sg_name        = "web_sg"
   sg_description = "SG for Web servers"
   aws_vpc        = data.aws_vpc.this.id
@@ -64,7 +64,7 @@ module "ec2_web_sg" {
 # Module Instance
 ################################################################################
 module "webec2" {
-  source                 = "../modules/ec2"
+  source                 = "../../modules/ec2"
   instance_type          = "t3.micro"
   ami                    = var.ami
   count                  = var.instance_count
